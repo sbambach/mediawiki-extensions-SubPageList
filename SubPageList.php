@@ -34,6 +34,10 @@ if ( !defined( 'Validator_VERSION' ) ) {
 	die( '<b>Error:</b> You need to have <a href="http://www.mediawiki.org/wiki/Extension:Validator">Validator</a> installed in order to use <a href="http://www.mediawiki.org/wiki/Extension:SubPageList">SubPageList</a>.<br />' );
 }
 
+if ( version_compare( Validator_VERSION, '0.5c', '<' ) ) {
+	die( '<b>Error:</b> This version of SubPageList requires Validator 0.5 or above; use SPL 0.5.x for Validator 0.4.x.' );
+}
+
 define( 'SPL_VERSION', '0.6 alpha' );
 
 $wgExtensionCredits['parserhook'][] = array(

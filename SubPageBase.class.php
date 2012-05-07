@@ -64,14 +64,16 @@ abstract class SubPageBase extends ParserHook {
 	 *     in this namespace or page does not exits).
 	 */
 	protected function getConditions( $title, $kidsOnly ) {
-
 		if ( is_null( $title ) ) {
 			// Just in case. If `getTitle' returns `null' it means page does not exist.
 			return null;
 		}
+
 		$dbr = wfGetDB( DB_SLAVE );
+
 		$conditions = array();
 		$conditions['page_is_redirect'] = 0;
+
 		if ( $title instanceof Title ) {
 			if ( ! MWNamespace::hasSubpages( $title->getNamespace() ) ) {
 				// Subpages are not enabled in this namespace. If we return empty array such a
@@ -88,6 +90,7 @@ abstract class SubPageBase extends ParserHook {
 		} else {
 			// `$title' is namespace index.
 			$conditions['page_namespace'] = $title;
+
 			if ( $kidsOnly && MWNamespace::hasSubpages( $title ) ) {
 				// Requested only "root" pages, not subpages.
 				$conditions[] = 'page_title NOT ' . $dbr->buildLike( $dbr->anyString(), '/', $dbr->anyString() );
@@ -97,7 +100,8 @@ abstract class SubPageBase extends ParserHook {
 				// needed.
 			}
 		}
-		return $conditions;
-	} // getConditions
 
-} // class SubPageBase
+		return $conditions;
+	}
+
+}
