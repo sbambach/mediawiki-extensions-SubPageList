@@ -16,6 +16,7 @@
  * @copyright © 2008 James McCormack, preceding version Martin Schallnahs, original Rob Church
  */
 final class SubPageCount extends SubPageBase {
+
 	/**
 	 * No LSB in pre-5.3 PHP *sigh*.
 	 * This is to be refactored as soon as php >=5.3 becomes acceptable.
